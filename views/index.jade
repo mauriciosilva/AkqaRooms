@@ -1,2 +1,20 @@
-div.content
-  aside.summary software engineer,<br/> living and <span class='work'>working</span> in bay area, california
+div#main(data-role='page', data-theme='a')
+  div.ui_body(data-role='body')
+    div.content(data-role='content')
+      ul#users(data-role='listview', data-filter='true', data-theme='a')
+        - each rm, key in rooms
+          li(class: 'users-'+key) 
+            a(href='#rm_'+key)#{rm.name}
+
+
+-each rm, key in rooms
+  div(data-role='page', id='rm_'+key, data-theme='a')
+    div(data-role='header')
+      h2 #{rm.name}
+    div(data-role='body')
+      div(data-role='content') 
+        p (#{rm.floor}) #{rm.name}
+        p #{rm.desc}
+        p.map
+          img(src: 'images/'+rm['img'], id: rm['key'],  height="300", width="320")
+        
