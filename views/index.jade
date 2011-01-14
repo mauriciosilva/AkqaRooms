@@ -1,4 +1,4 @@
-link(rel='stylesheet', href='stylesheets/scroll.css')
+
 div#main(data-role='page', data-theme='a')
   div.ui_body(data-role='body')
     div.content(data-role='content')
@@ -16,7 +16,7 @@ div#main(data-role='page', data-theme='a')
       div(data-role='content') 
         p (#{rm.floor}) #{rm.name}
         p #{rm.desc}
-        div.map(data-scroll="true" )
+        div(class='map')
           img(src: 'images/'+rm['img'], id: rm['key'])
           
-
+  link(rel='stylesheet', href='stylesheets/map.css')
