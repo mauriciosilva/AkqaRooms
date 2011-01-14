@@ -18,13 +18,6 @@ app.configure(function(){
   app.use(express.staticProvider(__dirname + '/public'));
 });
 
-app.helpers({
-  name: function(first,last){
-    return first +', '+last
-    },
-    firstName: "maurico",
-    lastName: "silva"
-});
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
@@ -35,14 +28,24 @@ app.configure('production', function(){
 });
 
 
-
-var  users=  [
-  {first: 'mauricio', last: 'silva'}, {first: 'ching', last:'cushing-murray'},{first: 'diego', last:'silva'}
-];
-
 app.get('/', function(req, res){
-	res.render("index", {locals:{ rooms:Rooms.rooms, title: ".:node sandbox:.", value:"my test"}});
+	res.render("index", {locals:{ rooms:Rooms.rooms}});
 });
+
+app.get('/maps/*.:format', function(req, res){
+  var key = req.params.format;
+  var conf = include(Rooms.rooms ,key);
+  res.render("maps", {locals:{param:conf}});
+});
+
+
+function include(arr, key) {
+  for(k in arr){
+    if(arr[k]["key"] == key)
+      return arr[k];
+  }
+}
+
 
 // Only listen on $ node app.js
 

@@ -1,0 +1,24 @@
+.ui-content.ui-scrollview-clip {
+	padding: 0;
+}
+.ui-content.ui-scrollview-clip > div.ui-scrollview-view {
+	margin: 0;
+	padding: 15px;
+}
+.ui-content.ui-scrollview-clip > .ui-listview.ui-scrollview-view {
+	margin: 0;
+}
+.map {
+	border: solid 1px black;
+	background-color: #999;
+	overflow: hidden;
+	width: 300px;
+	height: 300px; 
+}
+.map > .ui-scrollview-view {
+	width: 1300px;
+	background-color: white;
+}
+.map .square {
+	float: left;
+}
