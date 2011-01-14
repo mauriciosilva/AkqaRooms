@@ -18,13 +18,6 @@ app.configure(function(){
   app.use(express.staticProvider(__dirname + '/public'));
 });
 
-app.helpers({
-  name: function(first,last){
-    return first +', '+last
-    },
-    firstName: "maurico",
-    lastName: "silva"
-});
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
@@ -36,28 +29,22 @@ app.configure('production', function(){
 
 
 app.get('/', function(req, res){
-	res.render("index", {locals:{ rooms:Rooms.rooms, title: ".:node sandbox:.", value:"my test"}});
+	res.render("index", {locals:{ rooms:Rooms.rooms}});
 });
 
-// app.get('/maps.html?:id', function(req, res){
-//   console.log(req.params);
-//   console.log(req.params[":id"]);
-//   console.log('hit');
-//   var p = req.params.id
-//   res.render("maps", {locals:{param:p}});
-// });
-app.get('/maps.:format', function(req, res){
-  console.log(req.params);
-  console.log(req.params[":id"]);
-  console.log('hit');
-  var p = req.params.id
-  res.render("maps", {locals:{param:p}});
+app.get('/maps/*.:format', function(req, res){
+  var key = req.params.format;
+  var conf = include(Rooms.rooms ,key);
+  res.render("maps", {locals:{param:conf}});
 });
 
-app.get("/products.:format", function(req, res){
-  res.send('got it');
-});
 
+function include(arr, key) {
+  for(k in arr){
+    if(arr[k]["key"] == key)
+      return arr[k];
+  }
+}
 
 
 // Only listen on $ node app.js

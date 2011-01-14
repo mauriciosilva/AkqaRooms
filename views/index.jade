@@ -6,21 +6,7 @@ div#main(data-role='page', data-theme='a')
       ul#rooms(data-role='listview',  data-theme='a')
         - each rm, key in rooms
           li(class: 'users-'+key) 
-            a(href='#rm_'+key)#{rm.name}
+            a(href='maps/'+rm["key"]+'.html', data-transition='slide')#{rm.name}
 
 
--each rm, key in rooms
-  div(data-role='page', id='rm_'+key, data-theme='a')
-    div(data-role='header')
-      h2 #{rm.name}
-    div(data-role='body')
-      div(data-role='content', class='ui-body') 
-        a(href='maps.htm'l, data-transition='slide') s;lkfj;sldkjfa;lskjf;alsjkd
-        p (#{rm.floor}) who #{rm.name}
-        p #{rm.desc}
-        div( class='map',scrollview="true")
-          img(src: 'images/'+rm['img'], id: rm['key'])
-        
-  link(rel='stylesheet', href='stylesheets/map.css')
-  script(src="javascripts/scrollview.js")
-  script(src='javascripts/scroll.js')
+

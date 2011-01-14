@@ -1,6 +1,13 @@
 div#maps(data-role='page', data-theme='a')
   div.ui_body(data-role='body')
     div(data-role='header')
-      h2 i'm a map, yo
+      h2 #{param.name}
     div(data-role='content')
-      = param
+      p Floor: #{param.floor}<br/> #{param.name}
+      p #{param.desc}
+      div(class='map', data-scroll='true')
+        img(src: '/images/'+param['img'], id: param['key'], height: "350px", width: "320px")
+        
+  link(rel='stylesheet', href='/stylesheets/map.css')
+  script(src="/javascripts/scrollview.js")
+  script(src='/javascripts/scroll.js')
