@@ -1,7 +1,9 @@
 div#main(data-role='page', data-theme='a')
   div.ui_body(data-role='body')
-    div.content(data-role='content')
-      ul#users(data-role='listview', data-filter='true', data-theme='a')
+    div(data-role='header')
+      h2 Conference Rooms
+    div.content(data-role='content', class='ui-body')
+      ul#rooms(data-role='listview',  data-theme='a')
         - each rm, key in rooms
           li(class: 'users-'+key) 
             a(href='#rm_'+key)#{rm.name}
@@ -12,10 +14,13 @@ div#main(data-role='page', data-theme='a')
     div(data-role='header')
       h2 #{rm.name}
     div(data-role='body')
-      div(data-role='content') 
-        p (#{rm.floor}) #{rm.name}
+      div(data-role='content', class='ui-body') 
+        a(href='maps.htm'l, data-transition='slide') s;lkfj;sldkjfa;lskjf;alsjkd
+        p (#{rm.floor}) who #{rm.name}
         p #{rm.desc}
-        div(class='map')
+        div( class='map',scrollview="true")
           img(src: 'images/'+rm['img'], id: rm['key'])
-          
+        
   link(rel='stylesheet', href='stylesheets/map.css')
+  script(src="javascripts/scrollview.js")
+  script(src='javascripts/scroll.js')

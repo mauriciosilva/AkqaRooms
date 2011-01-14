@@ -35,14 +35,30 @@ app.configure('production', function(){
 });
 
 
-
-var  users=  [
-  {first: 'mauricio', last: 'silva'}, {first: 'ching', last:'cushing-murray'},{first: 'diego', last:'silva'}
-];
-
 app.get('/', function(req, res){
 	res.render("index", {locals:{ rooms:Rooms.rooms, title: ".:node sandbox:.", value:"my test"}});
 });
+
+// app.get('/maps.html?:id', function(req, res){
+//   console.log(req.params);
+//   console.log(req.params[":id"]);
+//   console.log('hit');
+//   var p = req.params.id
+//   res.render("maps", {locals:{param:p}});
+// });
+app.get('/maps.:format', function(req, res){
+  console.log(req.params);
+  console.log(req.params[":id"]);
+  console.log('hit');
+  var p = req.params.id
+  res.render("maps", {locals:{param:p}});
+});
+
+app.get("/products.:format", function(req, res){
+  res.send('got it');
+});
+
+
 
 // Only listen on $ node app.js
 
