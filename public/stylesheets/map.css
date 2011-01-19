@@ -1,3 +1,7 @@
+#maps {
+  margin: 0px auto;
+  text-align: center;
+}
 .ui-content.ui-scrollview-clip {
 	padding: 0;
 }
